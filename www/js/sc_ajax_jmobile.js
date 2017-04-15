@@ -59,7 +59,7 @@ var daneSrodka;
                     .append(
                         $('<div>')
                         .attr('data-role','header')
-                        .html(data.srd_ean+ ' - '+data.srd_nazwa)
+                        .html('<h2>'+data.srd_ean+ ' - '+data.srd_nazwa+'</h2>')
                     )
                     .append(
                         $('<div>')
@@ -70,6 +70,32 @@ var daneSrodka;
                             .attr('data-collapsed-icon',"carat-d")
                             .attr('data-expanded-icon',"carat-u")
                             .html('<h4>Dane podstawowe</h4>')
+                            .append(
+                                $('<table>')
+                                .addClass('')
+                                .append(
+                                    $('<tr>')
+                                    .append(
+                                        $('<td>')
+                                        .html('Typ obiektu')
+                                    )
+                                    .append(
+                                        $('<td>')
+                                        .html(data.typ_obiektu)
+                                    )
+                                )
+                                .append(
+                                     $('<tr>')
+                                    .append(
+                                        $('<td>')
+                                        .html('Numer inwentarzowy')
+                                    )
+                                    .append(
+                                        $('<td>')
+                                        .html(data.nr_inw)
+                                    )
+                                )
+                            )
                         )
                     )
                     //.html('Kod kreskowy:'+ data.srd_ean)
