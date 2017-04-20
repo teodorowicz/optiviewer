@@ -125,7 +125,7 @@ $('#skanuj').click(
                 //console.log(kodEan);
                 if(kodEan.length == 10)
                 { 
-                    alert('srajaks!');
+                    //alert('srajaks!');
                     $.ajax({
                       type: "GET",
                       url: urlApi,
@@ -143,9 +143,9 @@ $('#skanuj').click(
               $("#result").html("Error Calling: " + settings.url + "<br />HTTP Code: " + request.status);
             });
  
-            function onSuccess(data)
+             function onSuccess(data)
             {   
-                //alert ('ajax.succes!!');
+                alert ('ajax.succes!!');
 
                 if (typeof(data)==='undefined'||data===null||!data.hasOwnProperty('srd_ean')) return false;
                 
