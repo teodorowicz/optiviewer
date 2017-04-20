@@ -98,10 +98,11 @@ function setApiUrl() {
 
 $('#skanuj').click(
     function() {
-        alert('cordova: '+typeof cordova);
-        alert('barcodeScanner'+typeof barcodeScanner);
+        alert('cordova is '+typeof cordova);
+        alert('barcodeScanner is '+typeof barcodeScanner);
+        alert('phonegap is '+typeof phonegap);
 
-        
+
 if (typeof cordova!=='undefined') {
         cordova.plugins.barcodeScanner.scan(
         function (result) {
@@ -150,9 +151,11 @@ if (typeof cordova!=='undefined') {
  
             function onSuccess(data)
             {   
+                alert ('ajax.succes!!');
+
                 if (typeof(data)==='undefined'||data===null||!data.hasOwnProperty('srd_ean')) return false;
                 
-                daneSrodka=data;
+                
                 
                 //let elem = document.createElement('div');
                 $('<div>')
