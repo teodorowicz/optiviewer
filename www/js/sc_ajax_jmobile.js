@@ -33,6 +33,7 @@ $('#skanuj').click(
 
 function getApiUrl () {
     if (localStorage.getItem("optiest-mwapi")===null){
+         //$('#pobierz').attr("disabled", true);
 
 /*
 $('div')       
@@ -88,8 +89,6 @@ function setApiUrl() {
 
         $(function() {
             //console.log('started...');
-
-
             //$('#formGetURL').submit(function(){return false} );
 
             urlApi=getApiUrl();
@@ -98,34 +97,26 @@ function setApiUrl() {
 
 $('#skanuj').click(
     function() {
-        alert('cordova is '+typeof cordova);
-        alert('barcodeScanner is '+typeof barcodeScanner);
-        alert('phonegap is '+typeof phonegap);
-
-
-if (typeof cordova!=='undefined') {
-        window.cordova.plugins.barcodeScanner.scan(
-        function (result) {
-          alert("We got a barcode\n" +
-                "Result: " + result.text + "\n" +
-                "Format: " + result.format + "\n" +
-                "Cancelled: " + result.cancelled);
-      }, 
-      function (error) {
-          alert("Scanning failed: " + error);
-      }
-        )
-}
-
-
-
+        if (typeof cordova!=='undefined') {
+                window.cordova.plugins.barcodeScanner.scan(
+                    function (result) {
+                        if (relsult.cancelled===false&&!result.text){
+                            $("#Kod").val(result.text);
+                            window.navigator.vibrate(100);
+                        }
+                    }, 
+                    function (error) {
+                        return false;
+                        //alert("Scanning failed: " + error);
+                    }
+                )
+        }
     }
-    
-   );
+);
 
 
 
-            $("#callAjax").click(function() {
+            $("#pobierz").click(function() {
                 var kodEan = $.trim($("#Kod").val());
 
                 //alert('klikniete');
