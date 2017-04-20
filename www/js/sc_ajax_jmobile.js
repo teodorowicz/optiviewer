@@ -1,16 +1,122 @@
 var daneSrodka;
 
+$('#skanuj').click(
+    function(){
+        cordova.plugins.barcodeScanner.scan(
+            function (result) {
+                alert("We got a barcode\n" +
+                    "Result: " + result.text + "\n" +
+                    "Format: " + result.format + "\n" +
+                    "Cancelled: " + result.cancelled);
+            },
+            function (error) {
+                alert("Scanning failed: " + error);
+            },
+            {
+                preferFrontCamera : true, // iOS and Android 
+            showFlipCameraButton : true, // iOS and Android 
+            showTorchButton : true, // iOS and Android 
+            torchOn: true, // Android, launch with the torch switched on (if available) 
+            prompt : "Place a barcode inside the scan area", // Android 
+            resultDisplayDuration: 500, // Android, display scanned text for X ms. 0 suppresses it entirely, default 1500 
+            formats : "QR_CODE,PDF_417", // default: all but PDF_417 and RSS_EXPANDED 
+            orientation : "landscape", // Android only (portrait|landscape), default unset so it rotates with the device 
+            disableAnimations : true, // iOS 
+            disableSuccessBeep: false // iOS 
+            }
+        );
+    }
+);
+
+function getApiUrl () {
+
+if (localStorage.getItem("optiest-mwapi")===null){
+
+/*
+$('div')       
+    .attr('id','popupGetURL')
+    .attr('data-role','popup')
+    .attr('data-theme','a')
+    .addClass('ui-corner-all')
+    .append(
+        $('form')
+        .append(
+            $('div')
+            .css('padding','10px 20px')
+            .append(
+                $('h3')
+                    .html('Podaj adres API:')
+            )
+            .append(
+               $('label')
+                .attr('for','inputurlapi')
+                .addClass('ui-hidden-accessible')
+                .html('URL:') 
+            )
+            .append(
+                $('input')
+                    .attr('type','text')
+                    .attr('id','inputurlapi')
+                    .attr('data-theme','a')
+                    .attr('value','http://')
+            )
+            .append(
+                $('button')
+                    .attr('type','submit')
+                    .addClass('ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-icon-left ui-icon-check')
+                    .html('zapisz')
+            )
+        )
+    )
+    .appendTo($('#result'));
+    */
+    //document.location.href='#popupGetURL';
+
+}
+else 
+$('#inputURL').attr('value',localStorage.getItem("optiest-mwapi"))
+return localStorage.getItem("optiest-mwapi");
+/*
+<a href="#popupLogin" data-rel="popup" data-position-to="window" 
+class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-icon-check ui-btn-icon-left ui-btn-a" 
+data-transition="pop">Sign in</a>
+<div data-role="popup" id="popupLogin" data-theme="a" class="ui-corner-all">
+    <form>
+        <div style="padding:10px 20px;">
+            <h3>Please sign in</h3>
+            <label for="un" class="ui-hidden-accessible">Username:</label>
+            <input type="text" name="user" id="un" value="" placeholder="username" data-theme="a">
+            <label for="pw" class="ui-hidden-accessible">Password:</label>
+            <input type="password" name="pass" id="pw" value="" placeholder="password" data-theme="a">
+            <button type="submit" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-icon-left ui-icon-check">Sign in</button>
+        </div>
+    </form>
+</div>
+*/
+}
+
+function setApiUrl() {
+    
+    localStorage.setItem("optiest-mwapi",document.getElementById('inputURL').value);
+    return true;
+}
+
         $(function() {
-            //console.log('start...');
+            //console.log('started...');
+
+
+            //$('#formGetURL').submit(function(){return false} );
+
+            urlApi=getApiUrl();
+
             $("#callAjax").click(function() {
                 var kodEan = $.trim($("#Kod").val());
                 //console.log(kodEan);
-                
                 if(kodEan.length == 10)
                 {
                     $.ajax({
                       type: "GET",
-                      url: "http://intranet2.su.krakow.pl/~mwilga/opti.php",
+                      url: urlApi,
                       data: ({srd_ean: kodEan}),
                       cache: false,
                       dataType: "json",
@@ -71,28 +177,160 @@ var daneSrodka;
                             .attr('data-expanded-icon',"carat-u")
                             .html('<h4>Dane podstawowe</h4>')
                             .append(
-                                $('<table>')
-                                .addClass('')
+                                $('<div>')
+                                .addClass('rTable')
                                 .append(
-                                    $('<tr>')
+                                    $('<div>')
+                                    .addClass('rTableRow')
                                     .append(
-                                        $('<td>')
+                                        $('<div>')
+                                        .addClass('rTableHead')
                                         .html('Typ obiektu')
                                     )
                                     .append(
-                                        $('<td>')
+                                        $('<div>')
+                                        .addClass('rTableCell')
                                         .html(data.typ_obiektu)
                                     )
                                 )
                                 .append(
-                                     $('<tr>')
+                                    $('<div>')
+                                    .addClass('rTableRow')
                                     .append(
-                                        $('<td>')
+                                        $('<div>')
+                                        .addClass('rTableHead')
                                         .html('Numer inwentarzowy')
                                     )
                                     .append(
-                                        $('<td>')
+                                        $('<div>')
+                                        .addClass('rTableCell')
                                         .html(data.nr_inw)
+                                    )
+                                )
+                                .append(
+                                    $('<div>')
+                                    .addClass('rTableRow')
+                                    .append(
+                                        $('<div>')
+                                        .addClass('rTableHead')
+                                        .html('Nr obcy')
+                                    )
+                                    .append(
+                                        $('<div>')
+                                        .addClass('rTableCell')
+                                        .html(data.nr_inw_obcy)
+                                    )
+                                )
+                                .append(
+                                    $('<div>')
+                                    .addClass('rTableRow')
+                                    .append(
+                                        $('<div>')
+                                        .addClass('rTableHead')
+                                        .html('Nazwa')
+                                    )
+                                    .append(
+                                        $('<div>')
+                                        .addClass('rTableCell srd_nazwaClass')
+                                        .html(data.srd_nazwa)
+                                    )
+                                )
+                                .append(
+                                    $('<div>')
+                                    .addClass('rTableRow')
+                                    .append(
+                                        $('<div>')
+                                        .addClass('rTableHead')
+                                        .html('Status')
+                                    )
+                                    .append(
+                                        $('<div>')
+                                        .addClass('rTableCell')
+                                        .html(data.status)
+                                    )
+                                )
+                                .append(
+                                    $('<div>')
+                                    .addClass('rTableRow')
+                                    .append(
+                                        $('<div>')
+                                        .addClass('rTableHead')
+                                        .html('Kod KŚT')
+                                    )
+                                    .append(
+                                        $('<div>')
+                                        .addClass('rTableCell')
+                                        .html(data.kod_kst)
+                                    )
+                                )
+                                .append(
+                                    $('<div>')
+                                    .addClass('rTableRow')
+                                    .append(
+                                        $('<div>')
+                                        .addClass('rTableHead')
+                                        .html('Nazwa KŚT')
+                                    )
+                                    .append(
+                                        $('<div>')
+                                        .addClass('rTableCell')
+                                        .html(data.nazwa_kst)
+                                    )
+                                )
+                                .append(
+                                    $('<div>')
+                                    .addClass('rTableRow')
+                                    .append(
+                                        $('<div>')
+                                        .addClass('rTableHead')
+                                        .html('Numer Fabryczny')
+                                    )
+                                    .append(
+                                        $('<div>')
+                                        .addClass('rTableCell')
+                                        .html(data.SRD_NR_FABRYCZNY)
+                                    )
+                                )
+                                .append(
+                                    $('<div>')
+                                    .addClass('rTableRow')
+                                    .append(
+                                        $('<div>')
+                                        .addClass('rTableHead')
+                                        .html('Data zakupu')
+                                    )
+                                    .append(
+                                        $('<div>')
+                                        .addClass('rTableCell')
+                                        .html(data.SRD_DATA_ZAKUPU)
+                                    )
+                                )
+                                .append(
+                                    $('<div>')
+                                    .addClass('rTableRow')
+                                    .append(
+                                        $('<div>')
+                                        .addClass('rTableHead')
+                                        .html('Dostawca')
+                                    )
+                                    .append(
+                                        $('<div>')
+                                        .addClass('rTableCell')
+                                        .html(data.nazwa_dostwacy)
+                                    )
+                                )
+                                .append(
+                                    $('<div>')
+                                    .addClass('rTableRow')
+                                    .append(
+                                        $('<div>')
+                                        .addClass('rTableHead')
+                                        .html('NIP Dostawcy')
+                                    )
+                                    .append(
+                                        $('<div>')
+                                        .addClass('rTableCell')
+                                        .html(data.nip_dostawcy)
                                     )
                                 )
                             )
