@@ -12,6 +12,8 @@
         <icon src="Resources/icon/icon.png" platform="android" />    
         <icon src="icon.png" />
 
+        <access origin="http://*.su.krakow.pl" />
+
 	    <plugin name="cordova-plugin-device" spec="~1.1.4" />
 	    <plugin name="cordova-plugin-dialogs" spec="~1.3.1" />
         
