@@ -95,10 +95,12 @@ function setApiUrl() {
             urlApi=getApiUrl();
 
 
-if (typeof cordova!=='undefined') {
+
 $('#skanuj').click(
     function() {
-        alert('klikniete');
+        alert('klikniete: '+typeof cordova);
+
+if (typeof cordova!=='undefined') {
         cordova.plugins.barcodeScanner.scan(
         function (result) {
           alert("We got a barcode\n" +
@@ -110,11 +112,15 @@ $('#skanuj').click(
           alert("Scanning failed: " + error);
       }
         )
+}
+
+
+
     }
     
    )
 
-}
+
 
             $("#callAjax").click(function() {
                 var kodEan = $.trim($("#Kod").val());
