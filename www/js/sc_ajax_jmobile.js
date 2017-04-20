@@ -104,7 +104,7 @@ $('#skanuj').click(
 
 
 if (typeof cordova!=='undefined') {
-        cordova.plugins.barcodeScanner.scan(
+        window.cordova.plugins.barcodeScanner.scan(
         function (result) {
           alert("We got a barcode\n" +
                 "Result: " + result.text + "\n" +
@@ -121,7 +121,7 @@ if (typeof cordova!=='undefined') {
 
     }
     
-   )
+   );
 
 
 
@@ -151,7 +151,7 @@ if (typeof cordova!=='undefined') {
  
             function onSuccess(data)
             {   
-                alert ('ajax.succes!!');
+                //alert ('ajax.succes!!');
 
                 if (typeof(data)==='undefined'||data===null||!data.hasOwnProperty('srd_ean')) return false;
                 
