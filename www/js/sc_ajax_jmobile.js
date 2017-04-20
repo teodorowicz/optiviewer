@@ -100,8 +100,10 @@ $('#skanuj').click(
         if (typeof cordova!=='undefined') {
                 window.cordova.plugins.barcodeScanner.scan(
                     function (result) {
-                        if (relsult.cancelled===false&&!result.text){
-                            $("#Kod").val(result.text);
+                        if (result.cancelled===false&&!result.text){
+                            $("#Kod")
+                                .val(result.text)
+                                .trigger('click');
                             window.navigator.vibrate(100);
                         }
                     }, 
@@ -122,7 +124,8 @@ $('#skanuj').click(
                 //alert('klikniete');
                 //console.log(kodEan);
                 if(kodEan.length == 10)
-                {
+                { 
+                    alert('srajaks!');
                     $.ajax({
                       type: "GET",
                       url: urlApi,
