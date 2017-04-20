@@ -100,7 +100,7 @@ $('#skanuj').click(
         if (typeof cordova!=='undefined') {
                 window.cordova.plugins.barcodeScanner.scan(
                     function (result) {
-                        if (result.cancelled===false&&!result.text){
+                        if (result.cancelled===false&&result.text!==''){
                             $("#Kod")
                                 .val(result.text)
                                 .trigger('click');
