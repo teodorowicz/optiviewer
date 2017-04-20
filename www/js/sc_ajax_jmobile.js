@@ -98,8 +98,10 @@ function setApiUrl() {
 
 $('#skanuj').click(
     function() {
-        alert('klikniete: '+typeof cordova);
+        alert('cordova: '+typeof cordova);
+        alert('barcodeScanner'+typeof barcodeScanner);
 
+        
 if (typeof cordova!=='undefined') {
         cordova.plugins.barcodeScanner.scan(
         function (result) {
@@ -125,7 +127,7 @@ if (typeof cordova!=='undefined') {
             $("#callAjax").click(function() {
                 var kodEan = $.trim($("#Kod").val());
 
-                alert('klikniete');
+                //alert('klikniete');
                 //console.log(kodEan);
                 if(kodEan.length == 10)
                 {
@@ -135,6 +137,8 @@ if (typeof cordova!=='undefined') {
                       data: ({srd_ean: kodEan}),
                       cache: false,
                       dataType: "json",
+                      beforeSend : function() {$.mobile.loading('show');},
+                      complete   : function() {$.mobile.loading('hide');},
                       success: onSuccess
                     })
                 }
