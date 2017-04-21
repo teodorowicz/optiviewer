@@ -1,80 +1,21 @@
 var daneSrodka;
 
+var geoloc;
 
-/*
-$('#skanuj').click(
-    function(){
-        cordova.plugins.barcodeScanner.scan(
-            function (result) {
-                alert("We got a barcode\n" +
-                    "Result: " + result.text + "\n" +
-                    "Format: " + result.format + "\n" +
-                    "Cancelled: " + result.cancelled);
-            },
-            function (error) {
-                alert("Scanning failed: " + error);
-            },
-            {
-            preferFrontCamera : true, // iOS and Android 
-            showFlipCameraButton : true, // iOS and Android 
-            showTorchButton : true, // iOS and Android 
-            torchOn: true, // Android, launch with the torch switched on (if available) 
-            prompt : "Place a barcode inside the scan area", // Android 
-            resultDisplayDuration: 500, // Android, display scanned text for X ms. 0 suppresses it entirely, default 1500 
-            formats : "QR_CODE,PDF_417", // default: all but PDF_417 and RSS_EXPANDED 
-            orientation : "landscape", // Android only (portrait|landscape), default unset so it rotates with the device 
-            disableAnimations : true, // iOS 
-            disableSuccessBeep: false // iOS 
-            }
-        );
-    }
-);
-*/
+function getGeoLoc() {
+if (navigator.geolocation) {
+navigator.geolocation.getCurrentPosition(function (position) {
+    console.log("Latitude: " + position.coords.latitude +" Longitude: " + position.coords.longitude); 
+    geoloc="Latit:" + position.coords.latitude +"Longi:" + position.coords.longitude;
+})
+}else {
+    geoloc=null;
+}
+}
 
 function getApiUrl () {
     if (localStorage.getItem("optiest-mwapi")===null){
          //$('#pobierz').attr("disabled", true);
-
-/*
-$('div')       
-    .attr('id','popupGetURL')
-    .attr('data-role','popup')
-    .attr('data-theme','a')
-    .addClass('ui-corner-all')
-    .append(
-        $('form')
-        .append(
-            $('div')
-            .css('padding','10px 20px')
-            .append(
-                $('h3')
-                    .html('Podaj adres API:')
-            )
-            .append(
-               $('label')
-                .attr('for','inputurlapi')
-                .addClass('ui-hidden-accessible')
-                .html('URL:') 
-            )
-            .append(
-                $('input')
-                    .attr('type','text')
-                    .attr('id','inputurlapi')
-                    .attr('data-theme','a')
-                    .attr('value','http://')
-            )
-            .append(
-                $('button')
-                    .attr('type','submit')
-                    .addClass('ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-icon-left ui-icon-check')
-                    .html('zapisz')
-            )
-        )
-    )
-    .appendTo($('#result'));
-    */
-    //document.location.href='#popupGetURL';
-
 }
 else 
 $('#inputURL').attr('value',localStorage.getItem("optiest-mwapi"))
@@ -125,20 +66,24 @@ $('#skanuj').click(
     }
 );
 
-
-
             $("#pobierz").click(function() {
                 var kodEan = $.trim($("#Kod").val());
 
                 //alert('klikniete');
                 //console.log(kodEan);
+                getGeoLoc();
+                if (typeof device==='undefined') {device={uuid:null,model:null,version:null}}
                 if(kodEan.length == 10)
                 { 
-                    //alert('srajaks!');
                     $.ajax({
                       type: "GET",
                       url: urlApi,
-                      data: ({srd_ean: kodEan}),
+                      data: ({  srd_ean: kodEan,
+                                dev_uuid: device.uuid,
+                                dev_modl: device.model,
+                                dev_vers: device.version,
+                                geo: geoloc 
+                            }),
                       cache: false,
                       dataType: "json",
                       beforeSend : function() {$.mobile.loading('show');},
@@ -227,11 +172,7 @@ $('#skanuj').click(
                                         .addClass('rTableHead')
                                         .html('Numer inwentarzowy')
                                     )
-                                    .append(
-                                        $('<div>')
-                                        .addClass('rTableCell')
-                                        .html(data.nr_inw)
-                                    )
+                                    .append($('<div>').addClass('rTableCell').html(data.nr_inw))
                                 )
                                 .append(
                                     $('<div>')
@@ -241,11 +182,7 @@ $('#skanuj').click(
                                         .addClass('rTableHead')
                                         .html('Nr obcy')
                                     )
-                                    .append(
-                                        $('<div>')
-                                        .addClass('rTableCell')
-                                        .html(data.nr_inw_obcy)
-                                    )
+                                    .append($('<div>').addClass('rTableCell').html(data.nr_inw))
                                 )
                                 .append(
                                     $('<div>')
