@@ -135,6 +135,8 @@ $('#skanuj').click(
                       beforeSend : function() {$.mobile.loading('show');},
                       complete   : function() {$.mobile.loading('hide');},
                       success: onSuccess
+                    }).done(function() {
+                        alert('ajax done');
                     })
                 }
             });
