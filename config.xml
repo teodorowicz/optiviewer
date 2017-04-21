@@ -12,6 +12,11 @@
         <icon src="Resources/icon/icon.png" platform="android" />    
         <icon src="icon.png" />
 
+        
+        <plugin name="cordova-plugin-whitelist" version="1" />
+        <allow-navigation href="*" />
+        <allow-intent href="http://*/*" />
+        <allow-intent href="https://*/*" />
         <access origin="*" />
 
 	    <plugin name="cordova-plugin-device" spec="~1.1.4" />
