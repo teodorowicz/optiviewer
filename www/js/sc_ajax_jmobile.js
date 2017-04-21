@@ -89,11 +89,8 @@ function setApiUrl() {
 
         $(function() {
             //console.log('started...');
-            //$('#formGetURL').submit(function(){return false} );
-
+            
             urlApi=getApiUrl();
-
-
 
 $('#skanuj').click(
     function() {
@@ -108,8 +105,20 @@ $('#skanuj').click(
                         }
                     }, 
                     function (error) {
+                        alert("Scanning failed: " + error);
                         return false;
-                        //alert("Scanning failed: " + error);
+                    },
+                    {
+                        preferFrontCamera : true, // iOS and Android 
+                        showFlipCameraButton : true, // iOS and Android 
+                        showTorchButton : true, // iOS and Android 
+                        torchOn: true, // Android, launch with the torch switched on (if available) 
+                        prompt : "Umieść kod znajdujący się na etykiecie w okienku", 
+                        resultDisplayDuration: 500, // Android, display scanned text for X ms. 0 suppresses it entirely, default 1500 
+                        formats : "DATA_MATRIX,CODE_128", //"QR_CODE,PDF_417", // default: all but PDF_417 and RSS_EXPANDED 
+                        orientation : "portrait", // Android only (portrait|landscape), default unset so it rotates with the device 
+                        disableAnimations : true, // iOS 
+                        disableSuccessBeep: false // iOS 
                     }
                 )
         }
@@ -136,7 +145,7 @@ $('#skanuj').click(
                       complete   : function() {$.mobile.loading('hide');},
                       success: onSuccess
                     }).done(function() {
-                        alert('ajax done');
+                        //alert('ajax done');
                     })
                 }
             });
@@ -147,11 +156,7 @@ $('#skanuj').click(
  
              function onSuccess(data)
             {   
-                alert ('ajax.succes!!');
-
                 if (typeof(data)==='undefined'||data===null||!data.hasOwnProperty('srd_ean')) return false;
-                
-                
                 
                 //let elem = document.createElement('div');
                 $('<div>')
@@ -176,7 +181,8 @@ $('#skanuj').click(
                             )
                         )
                     .appendTo($("#result"));
-
+                
+                
                 $('<div>')
                     .attr('id','page'+data.srd_ean)
                     .attr('data-role','page')
@@ -349,6 +355,105 @@ $('#skanuj').click(
                                         $('<div>')
                                         .addClass('rTableCell')
                                         .html(data.nip_dostawcy)
+                                    )
+                                )
+                                .append(
+                                    $('<div>')
+                                    .addClass('rTableRow')
+                                    .append(
+                                        $('<div>')
+                                        .addClass('rTableHead')
+                                        .html('Nr faktury')
+                                    )
+                                    .append(
+                                        $('<div>')
+                                        .addClass('rTableCell')
+                                        .html(data.SRD_NR_DOKUMENTU)
+                                    )
+                                )
+                            )
+                        )
+                    )
+                    .append(
+                        $('<div>')
+                        .attr('data-role','content')
+                        .append(
+                            $('<div>')
+                            .attr('data-role','collapsible')
+                            .attr('data-collapsed-icon',"carat-d")
+                            .attr('data-expanded-icon',"carat-u")
+                            .html('<h4>Miejsce użytkowania</h4>')
+                            .append(
+                                $('<div>')
+                                .addClass('rTable')
+                                .append(
+                                    $('<div>')
+                                    .addClass('rTableRow')
+                                    .append(
+                                        $('<div>')
+                                        .addClass('rTableHead')
+                                        .html('Kod lokalizacji')
+                                    )
+                                    .append(
+                                        $('<div>')
+                                        .addClass('rTableCell')
+                                        .html(data.kod_lok)
+                                    )
+                                )
+                                .append(
+                                    $('<div>')
+                                    .addClass('rTableRow')
+                                    .append(
+                                        $('<div>')
+                                        .addClass('rTableHead')
+                                        .html('Nazwa lokalizacji')
+                                    )
+                                    .append(
+                                        $('<div>')
+                                        .addClass('rTableCell')
+                                        .html(data.nazwa_lok)
+                                    )
+                                )
+                                .append(
+                                    $('<div>')
+                                    .addClass('rTableRow')
+                                    .append(
+                                        $('<div>')
+                                        .addClass('rTableHead')
+                                        .html('Kod jednostki')
+                                    )
+                                    .append(
+                                        $('<div>')
+                                        .addClass('rTableCell')
+                                        .html(data.kod_jor)
+                                    )
+                                )
+                                .append(
+                                    $('<div>')
+                                    .addClass('rTableRow')
+                                    .append(
+                                        $('<div>')
+                                        .addClass('rTableHead')
+                                        .html('Nazwa jednostki')
+                                    )
+                                    .append(
+                                        $('<div>')
+                                        .addClass('rTableCell srd_nazwaClass')
+                                        .html(data.nazwa_jor)
+                                    )
+                                )
+                                .append(
+                                    $('<div>')
+                                    .addClass('rTableRow')
+                                    .append(
+                                        $('<div>')
+                                        .addClass('rTableHead')
+                                        .html('Osoba odpowiedzialna')
+                                    )
+                                    .append(
+                                        $('<div>')
+                                        .addClass('rTableCell')
+                                        .html(data.osod)
                                     )
                                 )
                             )

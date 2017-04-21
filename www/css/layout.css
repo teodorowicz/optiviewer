@@ -29,14 +29,15 @@ div.block .value{
   	height: 17px;
   	overflow: hidden;
   	padding: 3px 1.8%;
-  	width: 40%;
+  	
     border-radius: 0.4em;  
 }
-/*
-.rTableCell:after{
-    width:100%;
+.rTableCell:before{
+    width:25%;
 }
-*/
+.rTableCell:after{
+    width:70%;
+}
 .rTable:after {
   	visibility: hidden;
   	display: block;
@@ -48,4 +49,11 @@ div.block .value{
 .srd_nazwaClass {
 font-weight: 9;
 
+}
+#pobierz, #skanuj{
+    margin-top: 5px;
+}
+.ui-content{
+    padding-top: 0px;
+    padding-bottom: 0px;
 }

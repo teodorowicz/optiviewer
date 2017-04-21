@@ -1,0 +1,15 @@
+OPTIviewer
+
+Aplikacja wspomagaj¹ca proces elektronicznej inwentaryzacji oraz ewidencji maj¹tku w przedsiêbiorstwie.
+Umo¿liwia w ³atwy sposób pobranie informacji zgromadzonej w bazie danych systemu w czasie rzeczywistym.
+Dane na temat obiektu maj¹tkowego zaprezentowane w spójny i zwarty sposób s¹ wyœwietlane nastêpnie na ekranie smartfona .
+
+Technologie u¿yte do produkcji aplikacji:
+
+MSSQL->SQL->PHP->HTTP->API(JSON)->AJAX->JQueryMobile->cordova+phonegap plugin  
+
+Local storage u¿yto do przechowywania konfiguracji po³¹czenia: API URL.
+
+Adres API demo: http://www.su.krakow.pl/~mwilga/optiviewer-demo.php
+
+Projekt realizuje: Micha³ Teodorowicz-Wilga 
