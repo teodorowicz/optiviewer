@@ -82,8 +82,8 @@ return localStorage.getItem("optiest-mwapi");
 }
 
 function setApiUrl() {
-    
     localStorage.setItem("optiest-mwapi",document.getElementById('inputURL').value);
+    window.history.back();
     return true;
 }
 
@@ -109,8 +109,8 @@ $('#skanuj').click(
                         return false;
                     },
                     {
-                        preferFrontCamera : true, // iOS and Android 
-                        showFlipCameraButton : true, // iOS and Android 
+                        preferFrontCamera : false, // iOS and Android 
+                        showFlipCameraButton : false, // iOS and Android 
                         showTorchButton : true, // iOS and Android 
                         torchOn: true, // Android, launch with the torch switched on (if available) 
                         prompt : "Umieść kod znajdujący się na etykiecie w okienku", 
@@ -187,9 +187,11 @@ $('#skanuj').click(
                     .attr('id','page'+data.srd_ean)
                     .attr('data-role','page')
                     .append(
-                        $('<div>')
+                        $('<div>')// dodaj ikonę
                         .attr('data-role','header')
                         .html('<h2>'+data.srd_ean+ ' - '+data.srd_nazwa+'</h2>')
+                        .addClass('ui-btn-icon-right ui-icon-back')
+                        .click(function(){window.history.back() })
                     )
                     .append(
                         $('<div>')
