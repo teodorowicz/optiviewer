@@ -129,29 +129,19 @@ $('#skanuj').click(
                         )
                     .appendTo($("#result"));
                 
-                wartosciContent=
-                    $('<div>')
-                            .attr('data-role','collapsible')
-                            .attr('data-collapsed-icon',"carat-d")
-                            .attr('data-expanded-icon',"carat-u")
-                            .html('<h4>Wartości</h4>');
-                wartosciContent
+                  wartosciContent=
+                        $('<div>')
+                            .addClass('rTableRow')
                             .append($('<div>').addClass('rTableHead').html('Wartość brutto'))
                             .append($('<div>').addClass('rTableCell').html(data.SRD_WARTOSC_AKT_SG))
-                
-                dane.zrodla_fin.forEach(function(item){
-                console.log(item.nazwa_zf);
-                /*
-                
+                    
+                data.zrodla_fin.forEach(function(item){
                     wartosciContent
-                            .append($('<div>').addClass('rTableHead').html('Źródło finansowania'))
-                            .append($('<div>').addClass('rTableCell').html(item.nazwa_zf)) 
-                            .append($('<div>').addClass('rTableHead').html('Wartość'))
+                        .append($('<div>').addClass('rTableRow')
+                            .append($('<div>').addClass('rTableHead').html(item.nazwa_zf)) 
                             .append($('<div>').addClass('rTableCell').html(item.wartosc_zf))     
-                */
+                        )
                 })
-                
-
                 dokumentyContent=
                     $('<div>')
                             .attr('data-role','collapsible')
@@ -159,7 +149,7 @@ $('#skanuj').click(
                             .attr('data-expanded-icon',"carat-u")
                             .html('<h4>Dokumenty</h4>');
 
-                odczytyContetnt=
+                odczytyContent=
                     $('<div>')
                             .attr('data-role','collapsible')
                             .attr('data-collapsed-icon',"carat-d")
@@ -431,9 +421,20 @@ $('#skanuj').click(
                                 )
                             )
                         )
-                        .append(wartosciContent)
+                        .append(
+                            $('<div>')
+                            .attr('data-role','collapsible')
+                            .attr('data-collapsed-icon',"carat-d")
+                            .attr('data-expanded-icon',"carat-u")
+                            .html('<h4>Wartości</h4>')
+                            .append(
+                                $('<div>')
+                                .addClass('rTable')
+                                    .append(wartosciContent)
+                            )
+                        )
                         .append(dokumentyContent)
-                        .append(odczytyContetnt)
+                        .append(odczytyContent)
                     //.html('Kod kreskowy:'+ data.srd_ean)
                     )
                     .appendTo('body');
