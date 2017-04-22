@@ -6,7 +6,7 @@ function getGeoLoc() {
 if (navigator.geolocation) {
 navigator.geolocation.getCurrentPosition(function (position) {
     console.log("Latitude: " + position.coords.latitude +" Longitude: " + position.coords.longitude); 
-    geoloc="Latit:" + position.coords.latitude +"Longi:" + position.coords.longitude;
+    geoloc="Latit" + position.coords.latitude +"Longi" + position.coords.longitude;
 })
 }else {
     geoloc=null;
@@ -102,7 +102,9 @@ $('#skanuj').click(
              function onSuccess(data)
             {   
                 if (typeof(data)==='undefined'||data===null||!data.hasOwnProperty('srd_ean')) return false;
-                
+
+                daneSrodka=data; //drop after debug
+
                 //let elem = document.createElement('div');
                 $('<div>')
                     .attr('id','ean'+data.srd_ean)
@@ -127,6 +129,42 @@ $('#skanuj').click(
                         )
                     .appendTo($("#result"));
                 
+                wartosciContent=
+                    $('<div>')
+                            .attr('data-role','collapsible')
+                            .attr('data-collapsed-icon',"carat-d")
+                            .attr('data-expanded-icon',"carat-u")
+                            .html('<h4>Wartości</h4>');
+                wartosciContent
+                            .append($('<div>').addClass('rTableHead').html('Wartość brutto'))
+                            .append($('<div>').addClass('rTableCell').html(data.SRD_WARTOSC_AKT_SG))
+                
+                dane.zrodla_fin.forEach(function(item){
+                console.log(item.nazwa_zf);
+                /*
+                
+                    wartosciContent
+                            .append($('<div>').addClass('rTableHead').html('Źródło finansowania'))
+                            .append($('<div>').addClass('rTableCell').html(item.nazwa_zf)) 
+                            .append($('<div>').addClass('rTableHead').html('Wartość'))
+                            .append($('<div>').addClass('rTableCell').html(item.wartosc_zf))     
+                */
+                })
+                
+
+                dokumentyContent=
+                    $('<div>')
+                            .attr('data-role','collapsible')
+                            .attr('data-collapsed-icon',"carat-d")
+                            .attr('data-expanded-icon',"carat-u")
+                            .html('<h4>Dokumenty</h4>');
+
+                odczytyContetnt=
+                    $('<div>')
+                            .attr('data-role','collapsible')
+                            .attr('data-collapsed-icon',"carat-d")
+                            .attr('data-expanded-icon',"carat-u")
+                            .html('<h4>Odczyty</h4>');
                 
                 $('<div>')
                     .attr('id','page'+data.srd_ean)
@@ -182,7 +220,7 @@ $('#skanuj').click(
                                         .addClass('rTableHead')
                                         .html('Nr obcy')
                                     )
-                                    .append($('<div>').addClass('rTableCell').html(data.nr_inw))
+                                    .append($('<div>').addClass('rTableCell').html(data.nr_inw_obcy))
                                 )
                                 .append(
                                     $('<div>')
@@ -312,10 +350,6 @@ $('#skanuj').click(
                                 )
                             )
                         )
-                    )
-                    .append(
-                        $('<div>')
-                        .attr('data-role','content')
                         .append(
                             $('<div>')
                             .attr('data-role','collapsible')
@@ -397,10 +431,12 @@ $('#skanuj').click(
                                 )
                             )
                         )
-                    )
+                        .append(wartosciContent)
+                        .append(dokumentyContent)
+                        .append(odczytyContetnt)
                     //.html('Kod kreskowy:'+ data.srd_ean)
+                    )
                     .appendTo('body');
-                    //href="javascript:history.back()"
             }
  
         });
