@@ -1,37 +1,45 @@
 var daneSrodka;
-
 var geoloc;
 
 function getGeoLoc() {
-if (navigator.geolocation) {
-navigator.geolocation.getCurrentPosition(function (position) {
-    console.log("Latitude: " + position.coords.latitude +" Longitude: " + position.coords.longitude); 
-    geoloc="Latit" + position.coords.latitude +"Longi" + position.coords.longitude;
-})
-}else {
-    geoloc=null;
-}
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function (position) {
+        //console.log("Latitude: " + position.coords.latitude +" Longitude: " + position.coords.longitude); 
+        geoloc="Latit" + position.coords.latitude +"Longi" + position.coords.longitude;
+    })
+    }else {
+        geoloc=null;
+    }
 }
 
 function getApiUrl () {
-    if (localStorage.getItem("optiest-mwapi")===null){
-         //$('#pobierz').attr("disabled", true);
-}
-else 
-$('#inputURL').attr('value',localStorage.getItem("optiest-mwapi"))
-return localStorage.getItem("optiest-mwapi");
+
+    $('#inputURL').attr('value',localStorage.getItem("optiviewer-optiest-mwapi"));
+    $('#inputSK').attr('value',localStorage.getItem ("optiviewer-optiest-sk"));
+
+    if (    localStorage.getItem  ("optiviewer-optiest-mwapi")===null
+            ||localStorage.getItem("optiviewer-optiest-sk")===null){
+        window.location.href='#popupGetURL';
+    }
+    else {}
+    
+    return {    
+        ApiUrl: localStorage.getItem("optiviewer-optiest-mwapi"),
+        ApiSK:  localStorage.getItem("optiviewer-optiest-sk")
+    }
 }
 
 function setApiUrl() {
-    localStorage.setItem("optiest-mwapi",document.getElementById('inputURL').value);
+    localStorage.setItem("optiviewer-optiest-mwapi",document.getElementById('inputURL').value);
+    localStorage.setItem("optiviewer-optiest-sk",document.getElementById('inputSK').value);
     window.history.back();
     return true;
 }
 
-        $(function() {
+$(function() {
             //console.log('started...');
-            
-            urlApi=getApiUrl();
+//Inicjalizacja
+getApiUrl ();       
 
 $('#skanuj').click(
     function() {
@@ -69,20 +77,20 @@ $('#skanuj').click(
             $("#pobierz").click(function() {
                 var kodEan = $.trim($("#Kod").val());
 
-                //alert('klikniete');
-                //console.log(kodEan);
+                urlApi=getApiUrl().ApiUrl;
                 getGeoLoc();
                 if (typeof device==='undefined') {device={uuid:null,model:null,version:null}}
                 if(kodEan.length == 10)
                 { 
                     $.ajax({
                       type: "GET",
-                      url: urlApi,
+                      url: getApiUrl().ApiUrl,
                       data: ({  srd_ean: kodEan,
                                 dev_uuid: device.uuid,
                                 dev_modl: device.model,
                                 dev_vers: device.version,
-                                geo: geoloc 
+                                geo: geoloc,
+                                sk: getApiUrl().ApiSK
                             }),
                       cache: false,
                       dataType: "json",
@@ -295,7 +303,7 @@ $('#skanuj').click(
                                         .addClass('rTableHead')
                                         .html('Nr obcy')
                                     )
-                                    .append($('<div>').addClass('rTableCell').html(data.nr_inw_obcy))
+                                    .append($('<div>').addClass('rTableCell').html(data.sk+'/'+data.nr_inw_obcy))
                                 )
                                 .append(
                                     $('<div>')

@@ -2,18 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-
-        <!--
-        <meta   http-equiv="Content-Security-Policy" 
-                content=  " default-src *; 
-                            style-src 'self' 'unsafe-inline' 'unsafe-eval'; 
-                            script-src 'self' 'unsafe-inline' 'unsafe-eval';">
-        //-->
-
-        <!--<meta http-equiv="Content-Security-Policy" content="connect-src 'self' http://www.su.krakow.pl/"> //-->
-
         <title>OPTIviewer Mobile</title>
-        
         <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css" />
         <link rel="stylesheet" href="css/layout.css" />
         <script src="js/jquery-1.11.1.min.js"></script>
@@ -22,7 +11,6 @@
         <script src="barcodescanner.js"></script>
         <script src="js/sc_ajax_jmobile.js"></script>
         <script src="js/test.js"></script>
-
 </head>
 <body>
     <div data-role="page" id="indexPage">
@@ -32,19 +20,17 @@
                 class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-icon-gear ui-btn-icon-left ui-btn-a" 
                 data-transition="pop">API</a>
         </div>
-
         <div data-role="popup" id="popupGetURL" data-theme="a" class="ui-corner-all">
             <form id='formGetURL' action="javascript:setApiUrl();" method="POST" >
                 <div style="padding:0px 20px;">
-                    <h3>Podaj adres URL do API</h3>
+                    <h4>Podaj adres URL do API</br>oraz Klucz dostępu</h4>
                     <label for="inputURL" class="ui-hidden-accessible">URL:</label>
                     <input type="text" name="" id="inputURL" value="http://" placeholder="" data-theme="a">
+                    <input type="password" name="" id="inputSK" value="" placeholder="" data-theme="a">
                     <button type="submit" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-icon-left ui-icon-check">Zapisz</button>
                 </div>
             </form>
         </div>
-
-
         <div data-role="content">
             <div data-role="fieldcontain">
                 <label for="Kod">Podaj kod EAN:</label>
