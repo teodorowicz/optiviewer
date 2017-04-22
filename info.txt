@@ -12,7 +12,6 @@ Local storage u¿yto do przechowywania konfiguracji po³¹czenia: API URL.
 
 Adres API demo: http://www.su.krakow.pl/optiest-mwapi/demo.php
 
-Projekt realizuje: Micha³ Teodorowicz-Wilga 
 
 todo:
 2. ikona 
@@ -22,3 +21,19 @@ todo:
 6. procedura sejwuj¹ca odczyty
 7. api z zapisem odczytów
 
+
+requirements
+1. idea (creativity) - ok
+a. Hybrid tehnology  - ok
+b. PhoneGap Build    - ok
+2. Mobile application development  - ok
+a. One person as a team manager    - ok
+b. Github webpage for project description (app aim, description, authors' personal data) - in progress
+c. GitHub multipage wiki for app manual  - in progress
+d. Regular work records (commit details - who / when / what)  - done
+3. Github repository usage  - ok
+a. Icon and splashscreen related to the project subject  - in plan
+b. Framework for UI (JQueryMobile / other)  - JQuery Mobile
+c. Some local (database / local storage)    - config in local storage
+d. Some remote (web services / database)    - json api with mssql database 
+e. Native plug-ins   - device, whitelist, barcode, geolocalization
