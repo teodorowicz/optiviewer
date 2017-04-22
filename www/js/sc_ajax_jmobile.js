@@ -303,7 +303,7 @@ $('#skanuj').click(
                                         .addClass('rTableHead')
                                         .html('Nr obcy')
                                     )
-                                    .append($('<div>').addClass('rTableCell').html(data.sk+'/'+data.nr_inw_obcy))
+                                    .append($('<div>').addClass('rTableCell').html(data.nr_inw_obcy))
                                 )
                                 .append(
                                     $('<div>')
@@ -400,7 +400,7 @@ $('#skanuj').click(
                                     .append(
                                         $('<div>')
                                         .addClass('rTableCell')
-                                        .html(data.nazwa_dostwacy)
+                                        .html(data.nazwa_dostawcy)
                                     )
                                 )
                                 .append(
