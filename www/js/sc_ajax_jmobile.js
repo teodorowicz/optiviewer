@@ -143,20 +143,20 @@ $('#skanuj').click(
                             .append($('<div>').addClass('rTableHead').html('Wartość brutto'))
                             .append($('<div>').addClass('rTableCell').html(data.SRD_WARTOSC_AKT_SG))
                     
-                data.zrodla_fin.forEach(function(item){
+                if(data.zrodla_fin!==null){data.zrodla_fin.forEach(function(item){
                     wartosciContent
                         .append($('<div>').addClass('rTableRow')
                             .append($('<div>').addClass('rTableHead').html(item.nazwa_zf)) 
                             .append($('<div>').addClass('rTableCell').html(item.wartosc_zf))     
                         )
-                })
+                })}
                 dokumentyContent=
                     $('<div>')
                             .attr('data-role','collapsible')
                             .attr('data-collapsed-icon',"carat-d")
                             .attr('data-expanded-icon',"carat-u")
                             .html('<h4>Dokumenty '+((data.dokumenty===null)?0:data.dokumenty.length)+' szt.</h4>')
-                data.dokumenty.forEach(function(item){
+                if(data.dokumenty!==null){data.dokumenty.forEach(function(item){
                     dokumentyContent
                         .append(
                             $('<div>')
@@ -197,16 +197,14 @@ $('#skanuj').click(
                                 )
                             )
                         )
-                })
-
-
+                })}
                 odczytyContent=
                     $('<div>')
                             .attr('data-role','collapsible')
                             .attr('data-collapsed-icon',"carat-d")
                             .attr('data-expanded-icon',"carat-u")
                             .html('<h4>Odczyty '+((data.inwentaryzacje===null)?0:data.inwentaryzacje.length)+' szt.</h4>')
-                data.inwentaryzacje.forEach(function(item){
+                if(data.inwentaryzacje!==null){data.inwentaryzacje.forEach(function(item){
                     odczytyContent
                         .append(
                             $('<div>')
@@ -247,7 +245,7 @@ $('#skanuj').click(
                                 )
                             )
                         )
-                })
+                })}
                 
                 $('<div>')
                     .attr('id','page'+data.srd_ean)
