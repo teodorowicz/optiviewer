@@ -8,9 +8,18 @@ Dane na temat obiektu majątkowego zaprezentowane w spójny i zwarty sposób są
 
 ## 2. Działanie aplikacji.
   
-  Po pierwszym uruchomieniu aplikacji należy wprowadzić adres URL interfejsu programistycznego aplikacji [API](https://pl.wikipedia.org/wiki/Application_Programming_Interface) oraz prywatny klucz dostępu. 
+  - Po pierwszym uruchomieniu aplikacji należy wprowadzić adres URL interfejsu programistycznego aplikacji [API](https://pl.wikipedia.org/wiki/Application_Programming_Interface) oraz prywatny klucz dostępu. 
   W przypadku użycia wersji demo - patrz pt.4.
-  Po poprawnym wprowadzeniu konfiguracji aplikacja jest gotowa do użycia. Pobieranie informacji z bazy danych odbywa się poprez ręczne wprowadzenie kodu kreskowego [EAN] lub zeskanowanie go przy użyciu kamery wbudowanej w urządzenie. Pobrane dane wyświetlają się w postaci listy odczytów. Aby wyświetlić szczegóły należy dotknąć poszególnych pozycji.
+ 
+ ![Screen1](http://www.su.krakow.pl/optiest-mwapi/Screenshot_20170423-172212_mini.PNG)
+  
+  - Po poprawnym wprowadzeniu konfiguracji aplikacja jest gotowa do użycia. Pobieranie informacji z bazy danych odbywa się poprez ręczne wprowadzenie kodu kreskowego [EAN] lub zeskanowanie go przy użyciu kamery wbudowanej w urządzenie. 
+  
+  ![Screen1](http://www.su.krakow.pl/optiest-mwapi/Screenshot_20170423-173628_mini.PNG)
+  
+  - Pobrane dane wyświetlają się w postaci listy odczytów. Aby wyświetlić szczegóły należy dotknąć poszególnych pozycji.
+  
+   ![Screen1](http://www.su.krakow.pl/optiest-mwapi/Screenshot_20170423-173710_mini.PNG)
 
 ## 3. Technologie wykorzystane przy tworzeniu aplikacji.
 
@@ -43,4 +52,9 @@ Local storage użyto do przechowywania konfiguracji połączenia: API URL.
 ![Etykieta](http://www.su.krakow.pl/optiest-mwapi/2017-04-22%2023_21_06-Wydruk%20etykiety%20%C5%9Brodka%20trwa%C5%82ego.png "0000043086")
 
 ![Etykieta](http://www.su.krakow.pl/optiest-mwapi/2017-04-22%2023_18_19-Wydruk%20etykiety%20%C5%9Brodka%20trwa%C5%82ego.png "0000043086")
+
+## 5. Pobieranie aplikacji.
+
+###Aplikację OPTIViewer można pobrać [TUTAJ](https://build.phonegap.com/apps/2571642/share)
+
 
