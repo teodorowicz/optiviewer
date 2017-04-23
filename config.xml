@@ -12,6 +12,8 @@
             <icon src="icon-60@3x.png" width="180" height="180" />
         </platform>
         
+        <icon src="icon.png" />
+
         <plugin name="cordova-plugin-whitelist" version="1" />
         <allow-navigation href="*" />
         <allow-intent href="http://*/*" />
