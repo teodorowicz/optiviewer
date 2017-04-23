@@ -7,11 +7,10 @@
         <name>OPTIviewer</name>
         <description>Aplikacja wspomagajaca system elektronicznej ewidencji OPTIEST</description>
         <author href="" email="">Michał T-W</author>
-	    <platform name="android" />
-
-        <icon src="Resources/icon/icon.png" platform="android" />    
-        <icon src="icon.png" />
-
+	    
+        <platform name="android">
+            <icon src="icon-60@3x.png" width="180" height="180" />
+        </platform>
         
         <plugin name="cordova-plugin-whitelist" version="1" />
         <allow-navigation href="*" />
