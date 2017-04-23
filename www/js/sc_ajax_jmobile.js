@@ -122,7 +122,7 @@ $('#skanuj').click(
                         $("<a>")
                             .attr('href','#page'+data.srd_ean)
                             .html(data.srd_ean+' - '+data.srd_nazwa)
-                            .addClass('ui-shadow ui-btn ui-corner-all ui-btn-inline ui-btn-icon-left ui-icon-eye') 
+                            .addClass('ui-shadow ui-btn ui-corner-all ui-btn-inline ui-btn-icon-left ui-icon-eye odczyty') 
                         )
                     .append(
                         $("<a>")
