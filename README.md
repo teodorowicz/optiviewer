@@ -13,11 +13,11 @@ Dane na temat obiektu majątkowego zaprezentowane w spójny i zwarty sposób są
  
  ![Screen1](http://www.su.krakow.pl/optiest-mwapi/Screenshot_20170423-172212_mini.PNG)
   
-  - Po poprawnym wprowadzeniu konfiguracji aplikacja jest gotowa do użycia. Pobieranie informacji z bazy danych odbywa się poprez ręczne wprowadzenie kodu kreskowego [EAN] lub zeskanowanie go przy użyciu kamery wbudowanej w urządzenie. 
+  - Po poprawnym wprowadzeniu konfiguracji aplikacja jest gotowa do użycia. Pobieranie informacji z bazy danych odbywa się poprez ręczne wprowadzenie kodu kreskowego lub kodu 2D w standardzie _Data Matrix_ lub zeskanowanie go przy użyciu kamery wbudowanej w urządzenie. 
   
   ![Screen1](http://www.su.krakow.pl/optiest-mwapi/Screenshot_20170423-173628_mini.PNG)
   
-  - Pobrane dane wyświetlają się w postaci listy odczytów. Aby wyświetlić szczegóły należy dotknąć poszególnych pozycji.
+  - Zeskanowane kody pojawiają się w postaci listy kolejnych odczytów. Aby wyświetlić szczegóły należy dotknąć jednego z odczytanych uprzednio kodów. Następnie pojawi się karta ze szczegółami w postaci szeregu rozwijanych sekcji.
   
    ![Screen1](http://www.su.krakow.pl/optiest-mwapi/Screenshot_20170423-173710_mini.PNG)
 
