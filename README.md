@@ -23,7 +23,7 @@ Dane na temat obiektu majątkowego zaprezentowane w spójny i zwarty sposób są
 
 ## 3. Technologie wykorzystane przy tworzeniu aplikacji.
 
-  Aplikacja stworzona została w technologii hybrydowej składającej się z części webowej zbudowanej przy użyciu *_HTML_*, *_CSS_* i *_Java Script_* oraz części natywnej za pomocą której udostępniono wbudowane funkcje urządzenia przy wykorzystaniu pluginów *Apache Cordova* oraz *Adobe PhoneGap*. Aplikacja kompilowana w wersji pod system Adroid za pomocą *Adobe PhoneGap Build*.
+  Aplikacja stworzona została w technologii hybrydowej składającej się z części webowej zbudowanej przy użyciu *_HTML_*, *_CSS_* i *_Java Script_* oraz części natywnej za pomocą której udostępniono wbudowane funkcje urządzenia. Do tego celu wykorzystano pluginy *Apache Cordova* oraz *Adobe PhoneGap*. Aplikacja kompilowana w wersji pod system Adroid za pomocą *Adobe PhoneGap Build*.
 
 | Technologia | Zastosowanie |
 | ----------- | ------------ |
@@ -55,6 +55,6 @@ Local storage użyto do przechowywania konfiguracji połączenia: API URL.
 
 ## 5. Pobieranie aplikacji.
 
-###Aplikację OPTIViewer można pobrać [TUTAJ](https://build.phonegap.com/apps/2571642/share)
+### Aplikację OPTIViewer można pobrać [TUTAJ](https://build.phonegap.com/apps/2571642/share)
 
 
