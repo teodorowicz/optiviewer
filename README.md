@@ -10,6 +10,7 @@ Dane na temat obiektu majątkowego zaprezentowane w spójny i zwarty sposób są
   
   Po pierwszym uruchomieniu aplikacji należy wprowadzić adres URL interfejsu programistycznego aplikacji [API](https://pl.wikipedia.org/wiki/Application_Programming_Interface) oraz prywatny klucz dostępu. 
   W przypadku użycia wersji demo - patrz pt.4.
+  Po poprawnym wprowadzeniu konfiguracji aplikacja jest gotowa do użycia. Pobieranie informacji z bazy danych odbywa się poprez ręczne wprowadzenie kodu kreskowego [EAN] lub zeskanowanie go przy użyciu kamery wbudowanej w urządzenie. Pobrane dane wyświetlają się w postaci listy odczytów. Aby wyświetlić szczegóły należy dotknąć poszególnych pozycji.
 
 ## 3. Technologie wykorzystane przy tworzeniu aplikacji.
 
@@ -35,7 +36,7 @@ Local storage użyto do przechowywania konfiguracji połączenia: API URL.
 
 * W celu sprawdzenia poprawnego działania skanera kodów kreskowych / 2D można skorzystać z przykładowych etykiet umieszczonych poniżej:
 
-### Przykładowy wygląd etykiet skanowanych za pomocą aplikacji. 
+### Przykładowy wygląd etykiet zawierających kody **Data Matrix** skanowanych za pomocą aplikacji. 
 
 ![Etykieta](http://www.su.krakow.pl/optiest-mwapi/2017-04-22%2023_23_08-Wydruk%20etykiety%20%C5%9Brodka%20trwa%C5%82ego.png "0000043086")
 
