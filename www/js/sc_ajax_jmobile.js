@@ -39,6 +39,12 @@ function setApiUrl() {
 $(function() {
             //console.log('started...');
 //Inicjalizacja
+
+$.mobile.document.on( "click", "#open-popupArrow", function( evt ) {
+    $( "#popupArrow" ).popup( "open", { x: evt.pageX, y: evt.pageY } );
+    evt.preventDefault();
+});
+
 getApiUrl ();       
 
 $('#skanuj').click(
