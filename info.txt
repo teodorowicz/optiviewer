@@ -31,7 +31,7 @@ e. Native plug-ins   - device, whitelist, barcode, geolocalization
 
 
 todo (in the future):
- ikona 
+
  sk³adniki
  wartoœci w formie tabeli
  procedura sejwuj¹ca odczyty w bazie danych
