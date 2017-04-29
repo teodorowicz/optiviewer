@@ -68,7 +68,7 @@ $('#skanuj').click(
                         showFlipCameraButton : false, // iOS and Android 
                         showTorchButton : true, // iOS and Android 
                         torchOn: true, // Android, launch with the torch switched on (if available) 
-                        prompt : "Umieść kod znajdujący się na etykiecie w okienku", 
+                        prompt : "Umieść kod znajdujący się na etykiecie w jaśniejszym okienku", 
                         resultDisplayDuration: 500, // Android, display scanned text for X ms. 0 suppresses it entirely, default 1500 
                         formats : "DATA_MATRIX,CODE_128", //"QR_CODE,PDF_417", // default: all but PDF_417 and RSS_EXPANDED 
                         orientation : "portrait", // Android only (portrait|landscape), default unset so it rotates with the device 
@@ -104,7 +104,7 @@ $('#skanuj').click(
                       complete   : function() {$.mobile.loading('hide');},
                       success: onSuccess
                     }).done(function() {
-                        //alert('ajax done');
+                        navigator.vibrate([300,200,600]);
                     })
                 }
             });
@@ -117,7 +117,7 @@ $('#skanuj').click(
             {   
                 if (typeof(data)==='undefined'||data===null||!data.hasOwnProperty('srd_ean')) return false;
 
-                daneSrodka=data; //drop after debug
+                //daneSrodka=data; //drop after debug
 
                 //let elem = document.createElement('div');
                 $('<div>')
@@ -127,13 +127,14 @@ $('#skanuj').click(
                     .append(
                         $("<a>")
                             .attr('href','#page'+data.srd_ean)
+                            .addClass('status'+data.status.replace(' ','_'))
                             .html(data.srd_ean+' - '+data.srd_nazwa)
                             .addClass('ui-shadow ui-btn ui-corner-all ui-btn-inline ui-btn-icon-left ui-icon-eye odczyty') 
                         )
                     .append(
                         $("<a>")
                             .attr('href','#')
-                            .html("The die is cast.")
+                            //.html("The die is cast.")
                             .addClass('"ui-shadow ui-btn ui-corner-all ui-btn-inline ui-icon-delete ui-btn-icon-notext ui-btn-b')
                             .click( function () {
                                     $(this).parent().remove()
@@ -147,7 +148,7 @@ $('#skanuj').click(
                         $('<div>')
                             .addClass('rTableRow')
                             .append($('<div>').addClass('rTableHead').html('Wartość brutto'))
-                            .append($('<div>').addClass('rTableCell').html(data.SRD_WARTOSC_AKT_SG))
+                            .append($('<div>').addClass('rTableCell').html(data.SRD_WARTOSC_AKT_SG+'pln'))
                     
                 if(data.zrodla_fin!==null){data.zrodla_fin.forEach(function(item){
                     wartosciContent
@@ -283,7 +284,7 @@ $('#skanuj').click(
                             .attr('data-role','collapsible')
                             .attr('data-collapsed-icon',"carat-d")
                             .attr('data-expanded-icon',"carat-u")
-                            .html('<h4>Dane podstawowe '+data.nr_inw+'</h4>')
+                            .html('<h4>Dane podstawowe '+((data.nr_inw===null)?((data.nr_inw_obcy===null)?'':data.nr_inw_obcy):data.nr_inw)+'</h4>')
                             .append(
                                 $('<div>')
                                 .addClass('rTable')
@@ -346,6 +347,7 @@ $('#skanuj').click(
                                     .append(
                                         $('<div>')
                                         .addClass('rTableCell')
+                                        .addClass('status'+data.status.replace(' ','_'))
                                         .html(data.status)
                                     )
                                 )
@@ -392,6 +394,59 @@ $('#skanuj').click(
                                     )
                                 )
                                 .append(
+                                    $('<div>')
+                                    .addClass('rTableRow')
+                                    .append(
+                                        $('<div>')
+                                        .addClass('rTableHead')
+                                        .html('Grupa własna')
+                                    )
+                                    .append(
+                                        $('<div>')
+                                        .addClass('rTableCell')
+                                        .html(data.grupa_wlasna)
+                                    )
+                                )
+                                .append(
+                                    $('<div>')
+                                    .addClass('rTableRow')
+                                    .append(
+                                        $('<div>')
+                                        .addClass('rTableHead')
+                                        .html('Słownik własny')
+                                    )
+                                    .append(
+                                        $('<div>')
+                                        .addClass('rTableCell')
+                                        .html(data.slownik_wlasny)
+                                    )
+                                )
+                                .append(
+                                    $('<div>')
+                                    .addClass('rTableRow')
+                                    .append(
+                                        $('<div>')
+                                        .addClass('rTableHead')
+                                        .html('CPV')
+                                    )
+                                    .append(
+                                        $('<div>')
+                                        .addClass('rTableCell')
+                                        .html(data.cpv)
+                                    )
+                                )
+                            )
+                        )
+                        .append(
+                            $('<div>')
+                            .attr('data-role','collapsible')
+                            .attr('data-collapsed-icon',"carat-d")
+                            .attr('data-expanded-icon',"carat-u")
+                            .html('<h4>Dostawca</h4>')
+                            .append(
+                                $('<div>')
+                                .addClass('rTable')
+                                    .append(
                                     $('<div>')
                                     .addClass('rTableRow')
                                     .append(
@@ -448,7 +503,7 @@ $('#skanuj').click(
                                     )
                                 )
                             )
-                        )
+                        )    
                         .append(
                             $('<div>')
                             .attr('data-role','collapsible')

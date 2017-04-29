@@ -65,6 +65,35 @@ font-weight: 9;
     width: 65%;
 	text-align: left;
 }
-.ui-content, .ui-collapsible-content {
-    background-color: #B7C1D1;
+.ui-content {
+    background-color: #B7C1D1 !important;
+}
+.statusNowy {
+	color : #0096de !important;
+}
+.statusOznakowany {
+	color : #393839 !important;
+}
+.statusZlikwidowany,
+.statusSprzedany,
+.statusPrzekazany,
+.statusWyksięgowany
+ {
+	color : #848284 !important;
+}
+.statusWypożyczony,
+.statusSerwis {
+	color :#ff0000 !important;
+}
+.statusImportowany{
+	color :#008284 !important;
+}
+.statusNieuzupełniony {
+	color : #848200 !important;
+}
+.statusW_budowie {
+	color : #840084 !important;
+}
+.statusOdpłatnie_przekazany {
+	color :#840000 !important;
 }
