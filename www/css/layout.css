@@ -54,6 +54,7 @@ font-weight: 9;
 }
 #pobierz, #skanuj{
     margin-top: 5px;
+	background-color: #dedede;
 }
 .ui-content{
     padding-top: 0px;
@@ -63,4 +64,7 @@ font-weight: 9;
 	white-space: normal; 
     width: 65%;
 	text-align: left;
+}
+.ui-content, .ui-collapsible-content {
+    background-color: #B7C1D1;
 }

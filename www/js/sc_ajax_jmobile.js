@@ -38,7 +38,7 @@ function setApiUrl() {
 
 $(function() {
             //console.log('started...');
-//Inicjalizacja
+            //Inicjalizacja
 
 $.mobile.document.on( "click", "#open-popupArrow", function( evt ) {
     $( "#popupArrow" ).popup( "open", { x: evt.pageX, y: evt.pageY } );
@@ -56,7 +56,7 @@ $('#skanuj').click(
                             $("#Kod")
                                 .val(result.text)
                                 .trigger('click');
-                            window.navigator.vibrate(100);
+                            navigator.vibrate(300);
                         }
                     }, 
                     function (error) {
