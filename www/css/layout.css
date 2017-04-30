@@ -83,10 +83,10 @@ font-weight: 9;
 }
 .statusWypożyczony,
 .statusSerwis {
-	color :#ff0000 !important;
+	color : #ff0000 !important;
 }
 .statusImportowany{
-	color :#008284 !important;
+	color : #008284 !important;
 }
 .statusNieuzupełniony {
 	color : #848200 !important;
@@ -95,5 +95,8 @@ font-weight: 9;
 	color : #840084 !important;
 }
 .statusOdpłatnie_przekazany {
-	color :#840000 !important;
+	color : #840000 !important;
+}
+* {
+    font-family: calibri;
 }

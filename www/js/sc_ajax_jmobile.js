@@ -148,13 +148,13 @@ $('#skanuj').click(
                         $('<div>')
                             .addClass('rTableRow')
                             .append($('<div>').addClass('rTableHead').html('Wartość brutto'))
-                            .append($('<div>').addClass('rTableCell').html(data.SRD_WARTOSC_AKT_SG+'pln'))
+                            .append($('<div>').addClass('rTableCell').html(data.SRD_WARTOSC_AKT_SG+' pln'))
                     
                 if(data.zrodla_fin!==null){data.zrodla_fin.forEach(function(item){
                     wartosciContent
                         .append($('<div>').addClass('rTableRow')
                             .append($('<div>').addClass('rTableHead').html(item.nazwa_zf)) 
-                            .append($('<div>').addClass('rTableCell').html(item.wartosc_zf))     
+                            .append($('<div>').addClass('rTableCell').html(item.wartosc_zf+' pln'))     
                         )
                 })}
                 dokumentyContent=
@@ -590,7 +590,7 @@ $('#skanuj').click(
                             .attr('data-role','collapsible')
                             .attr('data-collapsed-icon',"carat-d")
                             .attr('data-expanded-icon',"carat-u")
-                            .html('<h4>Wartości '+((data.SRD_WARTOSC_AKT_SG===null)?0:data.SRD_WARTOSC_AKT_SG)+'</h4>')
+                            .html('<h4>Wartości '+((data.SRD_WARTOSC_AKT_SG===null)?0:data.SRD_WARTOSC_AKT_SG)+' pln</h4>')
                             .append(
                                 $('<div>')
                                 .addClass('rTable')
