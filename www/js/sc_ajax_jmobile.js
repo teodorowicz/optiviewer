@@ -60,7 +60,10 @@ $('#skanuj').click(
                         }
                     }, 
                     function (error) {
-                        alert("Scanning failed: " + error);
+                        $("#skanuj").addClass('err');
+                        setTimeout(function(){
+                            $("#skanuj").removeClass('err');
+                            },500)
                         return false;
                     },
                     {
@@ -110,12 +113,22 @@ $('#skanuj').click(
             });
  
             $("#result").ajaxError(function(event, request, settings, exception) {
-              $("#result").html("Error Calling: " + settings.url + "<br />HTTP Code: " + request.status);
+                $("#pobierz").addClass('err');
+                    setTimeout(function(){
+                        $("#pobierz").removeClass('err');
+                    },500);
+              //$("#result").html("Error Calling: " + settings.url + "<br />HTTP Code: " + request.status);
             });
  
              function onSuccess(data)
             {   
-                if (typeof(data)==='undefined'||data===null||!data.hasOwnProperty('srd_ean')) return false;
+                if (typeof(data)==='undefined'||data===null||!data.hasOwnProperty('srd_ean')) {
+                    $("#pobierz").addClass('err');
+                    setTimeout(function(){
+                        $("#pobierz").removeClass('err');
+                    },500)
+                    return false
+                };
 
                 //daneSrodka=data; //drop after debug
 

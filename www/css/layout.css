@@ -55,6 +55,7 @@ font-weight: 9;
 #pobierz, #skanuj{
     margin-top: 5px;
 	background-color: #dedede;
+	transition: background 0.3s;
 }
 .ui-content{
     padding-top: 0px;
@@ -99,4 +100,8 @@ font-weight: 9;
 }
 * {
     font-family: calibri;
+}
+.err{
+	transition: background 0.5s;
+	background: #FF7099 !important;
 }
