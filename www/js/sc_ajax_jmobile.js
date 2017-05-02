@@ -107,7 +107,7 @@ $('#skanuj').click(
                       complete   : function() {$.mobile.loading('hide');},
                       success: onSuccess
                     }).done(function() {
-                        navigator.vibrate([300,200,600]);
+                        //navigator.vibrate([200,100,400]);
                     })
                 }
             });
@@ -128,6 +128,8 @@ $('#skanuj').click(
                         $("#pobierz").removeClass('err');
                     },500)
                     return false
+                }else {
+                    navigator.vibrate([200,100,400]);
                 };
 
                 //daneSrodka=data; //drop after debug
@@ -161,13 +163,13 @@ $('#skanuj').click(
                         $('<div>')
                             .addClass('rTableRow')
                             .append($('<div>').addClass('rTableHead').html('Wartość brutto'))
-                            .append($('<div>').addClass('rTableCell').html(data.SRD_WARTOSC_AKT_SG+' pln'))
+                            .append($('<div>').addClass('rTableCell').html(((data.SRD_WARTOSC_AKT_SG===null)?0:data.SRD_WARTOSC_AKT_SG)+' pln'))
                     
                 if(data.zrodla_fin!==null){data.zrodla_fin.forEach(function(item){
                     wartosciContent
                         .append($('<div>').addClass('rTableRow')
                             .append($('<div>').addClass('rTableHead').html(item.nazwa_zf)) 
-                            .append($('<div>').addClass('rTableCell').html(item.wartosc_zf+' pln'))     
+                            .append($('<div>').addClass('rTableCell').html(((item.wartosc_zf===null)?0:item.wartosc_zf)+' pln'))     
                         )
                 })}
                 dokumentyContent=
