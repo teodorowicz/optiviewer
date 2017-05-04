@@ -26,7 +26,7 @@ div.block .value{
 .rTableCell, .rTableHead {
   	border: 1px solid #999999;
   	float: left;
-  	height: 17px;
+  	height: 1.1em; 
   	overflow: hidden;
   	padding: 3px 1.8%;
   	
@@ -104,4 +104,11 @@ font-weight: 9;
 .err{
 	transition: background 0.5s;
 	background: #FF7099 !important;
+}
+.rTableCell:hover {
+    overflow: visible;
+    height: initial;
+	padding: 3px 1.8%;
+	padding-bottom: 0px;
+	border: 1px solid green;
 }

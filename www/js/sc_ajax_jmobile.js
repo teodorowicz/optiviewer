@@ -133,7 +133,6 @@ $('#skanuj').click(
                 };
 
                 //daneSrodka=data; //drop after debug
-
                 //let elem = document.createElement('div');
                 $('<div>')
                     .attr('id','ean'+data.srd_ean)
@@ -158,8 +157,18 @@ $('#skanuj').click(
                             )
                         )
                     .appendTo($("#result"));
-                
-                  wartosciContent=
+
+                cechyContent=
+                        $('<div>')
+                            .addClass('rTable')
+                if(data.cechy!==null){data.cechy.forEach(function(item){
+                    cechyContent
+                        .append($('<div>').addClass('rTableRow')
+                            .append($('<div>').addClass('rTableHead').html(item.kod_cechy)) 
+                            .append($('<div>').addClass('rTableCell').html(item.nazwa_cechy+((item.wartosc_cechy===null||typeof item.wartosc_cechy ==='undefined'||item.wartosc_cechy==='')?'':(': '+item.wartosc_cechy)))) 
+                        )
+                })}
+                wartosciContent=
                         $('<div>')
                             .addClass('rTableRow')
                             .append($('<div>').addClass('rTableHead').html('Wartość brutto'))
@@ -280,7 +289,6 @@ $('#skanuj').click(
                             )
                         )
                 })}
-                
                 $('<div>')
                     .attr('id','page'+data.srd_ean)
                     .attr('data-role','page')
@@ -450,6 +458,34 @@ $('#skanuj').click(
                                         .html(data.cpv)
                                     )
                                 )
+                                .append(
+                                    $('<div>')
+                                    .addClass('rTableRow')
+                                    .append(
+                                        $('<div>')
+                                        .addClass('rTableHead')
+                                        .html('Zgłoszony do NFZ')
+                                    )
+                                    .append(
+                                        $('<div>')
+                                        .addClass('rTableCell')
+                                        .html(data.zgloszony_nfz)
+                                    )
+                                )
+                                .append(
+                                    $('<div>')
+                                    .addClass('rTableRow')
+                                    .append(
+                                        $('<div>')
+                                        .addClass('rTableHead')
+                                        .html('Rodzaj umowy')
+                                    )
+                                    .append(
+                                        $('<div>')
+                                        .addClass('rTableCell')
+                                        .html(data.rodzaj_umowy)
+                                    )
+                                )
                             )
                         )
                         .append(
@@ -599,6 +635,14 @@ $('#skanuj').click(
                                     )
                                 )
                             )
+                        )
+                        .append(
+                            $('<div>')
+                            .attr('data-role','collapsible')
+                            .attr('data-collapsed-icon',"carat-d")
+                            .attr('data-expanded-icon',"carat-u")
+                            .html('<h4>Cechy '+((data.cechy===null)?0:data.cechy.length)+' szt.</h4>')
+                                .append(cechyContent)
                         )
                         .append(
                             $('<div>')
